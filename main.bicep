@@ -19,6 +19,7 @@ param storageSKU string = 'Standard_LRS'
 
 var location = 'westus'
 var environmentName = 'test'
+var resourceGroupName = 'exampleRG'
 
 resource resourceGroup 'Microsoft.Resources/resourceGroups@2023-07-01' = {
   name: 'exampleRG'
@@ -28,10 +29,10 @@ resource resourceGroup 'Microsoft.Resources/resourceGroups@2023-07-01' = {
   }
 }
 
-var uniqueStorageName = '${storagePrefix}${uniqueString(resourceGroup().id)}'
+var uniqueStorageName = '${storagePrefix}${uniqueString(resourceGroup.id)}'
 
 resource stg 'Microsoft.Storage/storageAccounts@2021-04-01' = {
-  scope: resourceGroup(subscription().id, resourceGroup.id)
+  scope: resourceGroup(resourceGroupName)
   name: uniqueStorageName
   location: location
   sku: {
