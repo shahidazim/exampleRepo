@@ -17,9 +17,8 @@ param storagePrefix string
 ])
 param storageSKU string = 'Standard_LRS'
 
-param location string = resourceGroup().location
-
 var uniqueStorageName = '${storagePrefix}${uniqueString(resourceGroup().id)}'
+var location = 'westus'
 
 resource resourceGroup 'Microsoft.Resources/resourceGroups@2023-07-01' = {
   name: 'exampleRG'
