@@ -17,8 +17,8 @@ param storagePrefix string
 ])
 param storageSKU string = 'Standard_LRS'
 
-var uniqueStorageName = '${storagePrefix}${uniqueString(resourceGroup().id)}'
 var location = 'westus'
+var environmentName = 'test'
 
 resource resourceGroup 'Microsoft.Resources/resourceGroups@2023-07-01' = {
   name: 'exampleRG'
@@ -27,6 +27,8 @@ resource resourceGroup 'Microsoft.Resources/resourceGroups@2023-07-01' = {
     environmentName: environmentName
   }
 }
+
+var uniqueStorageName = '${storagePrefix}${uniqueString(resourceGroup().id)}'
 
 resource stg 'Microsoft.Storage/storageAccounts@2021-04-01' = {
   scope: resourceGroup
