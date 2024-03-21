@@ -1,3 +1,6 @@
+// Scope
+targetScope = 'subscription'
+
 @minLength(3)
 @maxLength(11)
 param storagePrefix string
@@ -18,7 +21,16 @@ param location string = resourceGroup().location
 
 var uniqueStorageName = '${storagePrefix}${uniqueString(resourceGroup().id)}'
 
+resource resourceGroup 'Microsoft.Resources/resourceGroups@2023-07-01' = {
+  name: 'exampleRG'
+  location: location
+  tags: {
+    environmentName: environmentName
+  }
+}
+
 resource stg 'Microsoft.Storage/storageAccounts@2021-04-01' = {
+  scope: resourceGroup
   name: uniqueStorageName
   location: location
   sku: {
