@@ -48,7 +48,8 @@ jobs:
       uses: Azure/cli@v1
       with:
         inlineScript: |
-          az deployment sub validate \
+          az deployment group validate \
+            --resource-group exampleRG
             --name validate-${{ github.run_id }} \
             --template-file main.bicep \
             --location $LOCATION 
