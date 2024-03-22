@@ -17,6 +17,7 @@ permissions:
   id-token: write
   contents: read
   security-events: write
+  actions: read
 
 jobs:
   bicep-unit-tests:
@@ -63,7 +64,7 @@ jobs:
     # Upload results to GitHub Advanced Security
     - name: Upload SARIF file
       if: success() || failure()
-      uses: github/codeql-action/upload-sarif@v2
+      uses: github/codeql-action/upload-sarif@v3
       with:
         sarif_file: results.sarif
         category: checkov
