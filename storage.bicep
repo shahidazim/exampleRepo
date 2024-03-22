@@ -19,6 +19,11 @@ resource storage 'Microsoft.Storage/storageAccounts@2023-01-01' = {
   properties: {
     supportsHttpsTrafficOnly: true
     defaultToOAuthAuthentication: true
+    allowBlobPublicAccess: false
+    networkAcls: {
+      defaultAction: 'Deny'
+    }
+    minimumTlsVersion: 'TLS1_2'
   }
   tags: resourceGroup().tags
 }
