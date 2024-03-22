@@ -3,7 +3,7 @@ targetScope = 'subscription'
 
 // Parameters
 @description('The environment name that is being deployed')
-param environmentName string
+param environmentName string = 'dev'
 
 @description('The Azure location to deploy resources into')
 param location string = 'uksouth'
