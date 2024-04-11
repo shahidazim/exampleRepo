@@ -21,7 +21,7 @@ jobs:
   bicep-whatif:
     name: 'Bicep Whatif'
     runs-on: ubuntu-latest
-    environment: production
+    environment: production1
 
     steps:
     # Checkout the repository to the GitHub Actions runner
@@ -108,7 +108,7 @@ jobs:
     #TODO can we easily determine if there are any changes to deploy?
     if: github.ref == 'refs/heads/main' 
     runs-on: ubuntu-latest
-    environment: production
+    environment: production1
     needs: [bicep-whatif]
     
     steps:
